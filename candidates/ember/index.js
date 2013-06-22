@@ -65,30 +65,3 @@ App.RecordView = Ember.View.extend({
     $(ev.target).parent().addClass('error');
   }
 });
-
-App.TimerInputView = Ember.TextField.extend({
-  attributeBindings: ['placeholder'],
-  placeholder: 'timer, ms',
-  valueBinding: 'App.DataController.timer'
-});
-
-App.AmountInputView = Ember.TextField.extend({
-  attributeBindings: ['placeholder'],
-  placeholder: 'amount',
-  valueBinding: 'App.DataController.amount'
-});
-
-App.TotalView = Ember.TextField.extend({
-  attributeBindings: ['readonly'],
-  classNames: ['total'],
-  readonly: 'readonly',
-  valueBinding: 'App.DataController.content.length'
-});
-
-App.ElapsedView = Ember.TextField.extend({
-  attributeBindings: ['readonly', 'placeholder'],
-  classNames: ['elapsed'],
-  readonly: 'readonly',
-  placeholder: 'elapsed time, sec',
-  valueBinding: 'App.DataController.elapsed'
-});
