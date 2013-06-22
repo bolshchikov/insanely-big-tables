@@ -7,7 +7,6 @@ App.Record = Ember.Object.extend({
   }
 });
 
-
 App.ApplicationController = Ember.ArrayController.extend({
   timer: null,
   amount: null,
@@ -25,15 +24,12 @@ App.ApplicationController = Ember.ArrayController.extend({
     this.pushObject(App.Record.create());
   },
   edit: function() {
-    var index = this.get('selected');
-    if (index !== -1) {
-      this.content[index].set('value', 'Edited');
-    }
+    var record = this.content[this.get('selected')]
+    if (record) record.set('value', 'Edited');
   },
   remove: function() {
-    var index = this.get('selected');
-    if (index !== -1) {
-      this.removeObject(this.content[index]);
+    if (this.get('selected') !== -1) {
+      this.removeObject(this.content[this.get('selected')]);
     }
   },
   start: function() {
