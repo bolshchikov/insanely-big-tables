@@ -27,19 +27,17 @@ App.ApplicationController = Ember.ArrayController.extend({
     }
   },
   start: function() {
-    var timer = this.get('timer'),
-        amount = this.get('amount'),
+    var that = this,
         i = 0,
-        launch = new Date().getTime(),
-        _this = this;
+        launch = new Date().getTime();
     (function adding() {
-      _this.unshiftObject(App.Record.create());
+      that.unshiftObject(App.Record.create());
       i += 1;
       if (i % 100 === 0) {
         console.log((new Date().getTime() - launch)/1000);
       }
-      if (i < amount) setTimeout(adding, timer);
-      else _this.set('elapsed', (new Date().getTime() - launch)/1000);
+      if (i < that.get('amount')) setTimeout(adding, that.get('timer'));
+      else that.set('elapsed', (new Date().getTime() - launch)/1000);
     })();
   }
 })
