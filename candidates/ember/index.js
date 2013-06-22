@@ -8,14 +8,8 @@ App.Record = Ember.Object.extend({
 });
 
 App.ApplicationController = Ember.ArrayController.extend({
-  timer: null,
-  amount: null,
-  elapsed: null,
   selected: -1,
-  content: [
-    App.Record.create(),
-    App.Record.create()
-  ],
+  content: [App.Record.create(), App.Record.create()],
 
   insert: function() {
     this.unshiftObject(App.Record.create());
