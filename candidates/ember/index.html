@@ -28,8 +28,8 @@
     <button class="btn" {{action remove }}>Remove</button>
     <button class="btn" {{action start  }}>Start</button>
 
-    {{input value=timer          placeholder="timer, ms" }}
-    {{input value=amount         placeholder="how many" }}
+    {{input value=timer  placeholder="timer, ms" }}
+    {{input value=amount placeholder="how many" }}
     <input id="elapsed" {{ bindAttr value="elapsed" }} readonly="readonly" placeholder="elapsed time, sec" />
     <input id="total"   {{ bindAttr value="content.length" }} readonly="readonly" />
 
