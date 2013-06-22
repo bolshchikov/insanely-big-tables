@@ -7,17 +7,20 @@
   <script src="../../vendors/js/ember-1.0.0-rc.5.js"></script>
   <script src="index.js"></script>
   <style>
-    input {
-      margin: 0 !important;
-    }
-    .total, .elapsed {
-      float: right !important;
-      margin-left: 5px !important;
-    }
+      body {
+        margin: 10px;
+      }
+      #total, #elapsed {
+        float: right !important;
+        margin-left: 5px !important;
+      }
+      input {
+        margin: 0 !important;
+      }
   </style>
   <title>Test with Ember</title>
 </head>
-<body style="margin: 10px;">
+<body>
   <script type="text/x-handlebars">
     <button class="btn" {{action insert }}>Insert</button>
     <button class="btn" {{action add    }}>Add</button>
