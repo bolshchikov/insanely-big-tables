@@ -7,7 +7,8 @@ App.Record = Ember.Object.extend({
   }
 });
 
-App.DataController = Ember.ArrayProxy.create({
+
+App.ApplicationController = Ember.ArrayController.extend({
   timer: null,
   amount: null,
   elapsed: null,
@@ -15,41 +16,40 @@ App.DataController = Ember.ArrayProxy.create({
   content: [
     App.Record.create(),
     App.Record.create()
-  ]
-});
+  ],
 
-App.ApplicationController = Ember.Controller.extend({
   insert: function() {
-    App.DataController.unshiftObject(App.Record.create());
+    this.unshiftObject(App.Record.create());
   },
   add: function() {
-    App.DataController.pushObject(App.Record.create());
+    this.pushObject(App.Record.create());
   },
   edit: function() {
-    var index = App.DataController.get('selected');
+    var index = this.get('selected');
     if (index !== -1) {
-      App.DataController.content[index].set('value', 'Edited');
+      this.content[index].set('value', 'Edited');
     }
   },
   remove: function() {
-    var index = App.DataController.get('selected');
+    var index = this.get('selected');
     if (index !== -1) {
-      App.DataController.removeObject(App.DataController.content[index]);
+      this.removeObject(this.content[index]);
     }
   },
   start: function() {
-    var timer = App.DataController.get('timer'),
-        amount = App.DataController.get('amount'),
+    var timer = this.get('timer'),
+        amount = this.get('amount'),
         i = 0,
-        launch = new Date().getTime();
+        launch = new Date().getTime(),
+        _this = this;
     (function adding() {
-      App.DataController.unshiftObject(App.Record.create());
+      _this.unshiftObject(App.Record.create());
       i += 1;
       if (i % 100 === 0) {
         console.log((new Date().getTime() - launch)/1000);
       }
       if (i < amount) setTimeout(adding, timer);
-      else App.DataController.set('elapsed', (new Date().getTime() - launch)/1000);
+      else _this.set('elapsed', (new Date().getTime() - launch)/1000);
     })();
   }
 })
@@ -58,7 +58,9 @@ App.RecordView = Ember.View.extend({
   tagName: 'tr',
   record: null,
   click: function (ev) {
-    App.DataController.set('selected', App.DataController.content.indexOf(this.record));
+    var ac = App.__container__.lookup("controller:application");
+
+    ac.set('selected', ac.content.indexOf(this.record));
     $('.error').each(function (i, el) {
       $(el).removeClass('error');
     });

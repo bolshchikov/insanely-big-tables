@@ -28,10 +28,10 @@
     <button class="btn" {{action remove }}>Remove</button>
     <button class="btn" {{action start  }}>Start</button>
 
-    {{input value=App.DataController.timer          placeholder="timer, ms" }}
-    {{input value=App.DataController.amount         placeholder="how many" }}
-    <input id="elapsed" {{ bindAttr value="App.DataController.elapsed" }} readonly="readonly" placeholder="elapsed time, sec" />
-    <input id="total"   {{ bindAttr value="App.DataController.content.length" }} readonly="readonly" />
+    {{input value=timer          placeholder="timer, ms" }}
+    {{input value=amount         placeholder="how many" }}
+    <input id="elapsed" {{ bindAttr value="elapsed" }} readonly="readonly" placeholder="elapsed time, sec" />
+    <input id="total"   {{ bindAttr value="content.length" }} readonly="readonly" />
 
     <table class="table table-striped">
       <thead>
@@ -43,7 +43,7 @@
       
       <tbody>
 
-        {{#each App.DataController}}
+        {{#each model}}
           {{#view App.RecordView recordBinding="this"}}
             <td>{{view.record.key}}</td>
             <td>{{view.record.value}}</td>
