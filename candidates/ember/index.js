@@ -18,57 +18,26 @@ App.DataController = Ember.ArrayProxy.create({
   ]
 });
 
-App.RecordView = Ember.View.extend({
-  tagName: 'tr',
-  record: null,
-  click: function (ev) {
-    App.DataController.set('selected', App.DataController.content.indexOf(this.record));
-    $('.error').each(function (i, el) {
-      $(el).removeClass('error');
-    });
-    $(ev.target).parent().addClass('error');
-  }
-});
-
-App.ButtonView = Ember.View.extend({
-  tagName: 'button',
-  classNames: ['btn']
-});
-
-App.InsButtonView = App.ButtonView.extend({
-  click: function () {
+App.ApplicationController = Ember.Controller.extend({
+  insert: function() {
     App.DataController.unshiftObject(App.Record.create());
-  }
-});
-
-App.AddButtonView = App.ButtonView.extend({
-  click: function () {
+  },
+  add: function() {
     App.DataController.pushObject(App.Record.create());
-  }
-});
-
-App.EditButtonView = App.ButtonView.extend({
-  click: function () {
+  },
+  edit: function() {
     var index = App.DataController.get('selected');
     if (index !== -1) {
       App.DataController.content[index].set('value', 'Edited');
     }
-  }
-});
-
-
-App.RemoveButtonView = App.ButtonView.extend({
-  click: function () {
+  },
+  remove: function() {
     var index = App.DataController.get('selected');
     if (index !== -1) {
       App.DataController.removeObject(App.DataController.content[index]);
     }
-  }
-});
-
-
-App.StartButtonView = App.ButtonView.extend({
-  click: function () {
+  },
+  start: function() {
     var timer = App.DataController.get('timer'),
         amount = App.DataController.get('amount'),
         i = 0,
@@ -82,7 +51,18 @@ App.StartButtonView = App.ButtonView.extend({
       if (i < amount) setTimeout(adding, timer);
       else App.DataController.set('elapsed', (new Date().getTime() - launch)/1000);
     })();
+  }
+})
 
+App.RecordView = Ember.View.extend({
+  tagName: 'tr',
+  record: null,
+  click: function (ev) {
+    App.DataController.set('selected', App.DataController.content.indexOf(this.record));
+    $('.error').each(function (i, el) {
+      $(el).removeClass('error');
+    });
+    $(ev.target).parent().addClass('error');
   }
 });
 

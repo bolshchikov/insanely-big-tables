@@ -20,11 +20,12 @@
 <body style="margin: 10px;">
   
   <script type="text/x-handlebars">
-  {{#view App.InsButtonView}}Insert{{/view}}
-  {{#view App.AddButtonView}}Add{{/view}}
-  {{#view App.EditButtonView}}Edit{{/view}}
-  {{#view App.RemoveButtonView}}Remove{{/view}}
-  {{#view App.StartButtonView}}Start{{/view}}
+  <button class="btn" {{action insert }}>Insert</button>
+  <button class="btn" {{action add    }}>Add</button>
+  <button class="btn" {{action edit   }}>Edit</button>
+  <button class="btn" {{action remove }}>Remove</button>
+  <button class="btn" {{action start  }}>Start</button>
+
   {{#view App.TimerInputView}}{{/view}}
   {{#view App.AmountInputView}}{{/view}}
   {{#view App.ElapsedView}}{{/view}}
